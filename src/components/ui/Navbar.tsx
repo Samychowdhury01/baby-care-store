@@ -39,6 +39,7 @@ const NavbarComponent = () => {
           "data-[active=true]:after:bg-primary",
         ],
       }}
+      className="bg-transparent absolute top-0 left-0 right-0 z-10"
     >
       <NavbarContent className="sm:hidden" justify="start">
         <NavbarMenuToggle
@@ -49,20 +50,21 @@ const NavbarComponent = () => {
       {/* for small device */}
       <NavbarContent className="sm:hidden pr-3" justify="center">
         <NavbarBrand>
-          <p className="font-bold text-inherit">BabyBliss</p>
+          <p className="font-bold text-inherit">
+            Baby<span className="text-primary">Bliss</span>
+          </p>
         </NavbarBrand>
       </NavbarContent>
       {/* for md device  */}
       <NavbarBrand className="hidden md:block">
-        <p className="font-bold text-inherit">BabyBliss</p>
+        <p className="font-bold text-inherit">
+          Baby<span className="text-primary">Bliss</span>
+        </p>
       </NavbarBrand>
 
       <NavbarContent className="hidden sm:flex gap-4" justify="center">
         <NavbarItem isActive={isActive("/")}>
-          <Link
-            color={isActive("/") ? "primary" : "foreground"}
-            href="/"
-          >
+          <Link color={isActive("/") ? "primary" : "foreground"} href="/">
             Home
           </Link>
         </NavbarItem>
@@ -87,7 +89,13 @@ const NavbarComponent = () => {
       </NavbarContent>
       <NavbarContent justify="end">
         <NavbarItem>
-          <Button as={Link} color="primary" href="/auth" variant="shadow" className="text-black">
+          <Button
+            as={Link}
+            color="primary"
+            href="/auth"
+            variant="shadow"
+            className="text-black"
+          >
             Login
           </Button>
         </NavbarItem>

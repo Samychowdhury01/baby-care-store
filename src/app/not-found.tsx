@@ -14,7 +14,7 @@ const NotFoundPage = () => {
           href="/"
           color="primary"
           radius="md"
-          className="shadow-2xl shadow-primary-500 text-black"
+          className="shadow-2xl shadow-primary text-black"
         >
           Back To HomePage
         </Button>
