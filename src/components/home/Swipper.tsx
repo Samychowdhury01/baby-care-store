@@ -24,7 +24,14 @@ const Swipper = () => {
         navigation={true}
         modules={[Pagination, Navigation]}
         className="h-full w-full"
-        
+        breakpoints={{
+            640: {
+              slidesPerView: 2, // Two slides for tablets
+            },
+            1024: {
+              slidesPerView: 3, // Two slides for PCs
+            },
+          }}
       >
         <SwiperSlide className="pb-10 w-[285px]">
           <Card shadow="sm" className="">
