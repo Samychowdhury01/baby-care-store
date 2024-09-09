@@ -1,4 +1,3 @@
-import React from "react";
 import { Button, Card, CardFooter, Image } from "@nextui-org/react";
 import Link from "next/link";
 import RightArrow from "../ui/RightArrow";
@@ -76,6 +75,7 @@ const Categories = () => {
           href="/products"
           color="primary"
           variant="bordered"
+          radius="lg"
           className="shadow-2xl shadow-primary hover:bg-primary hover:text-black transition-all duration-500"
           endContent={<RightArrow />}
         >

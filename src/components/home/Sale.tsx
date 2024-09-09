@@ -13,6 +13,7 @@ const Sale = () => {
           as={Link}
           href="/products"
           color="primary"
+          radius="lg"
           variant="bordered"
           className="shadow-2xl shadow-primary hover:bg-primary hover:text-black transition-all duration-500"
           endContent={<RightArrow />}
