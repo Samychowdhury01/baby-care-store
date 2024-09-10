@@ -39,7 +39,7 @@ const NavbarComponent = () => {
           "data-[active=true]:after:bg-primary",
         ],
       }}
-      className="bg-transparent absolute top-0 left-0 right-0 z-10"
+      className={`bg-transparent  ${pathname === '/' ? "absolute top-0 left-0 right-0 z-10" : ""}`}
     >
       <NavbarContent className="sm:hidden" justify="start">
         <NavbarMenuToggle

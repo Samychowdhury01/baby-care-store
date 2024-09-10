@@ -11,7 +11,7 @@ const Sale = () => {
         <h2 className="text-3xl gradient font-semibold">Flash Sale</h2>
         <Button
           as={Link}
-          href="/products"
+          href="/sales"
           color="primary"
           radius="lg"
           variant="bordered"
