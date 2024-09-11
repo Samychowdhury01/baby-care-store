@@ -1,7 +1,7 @@
 export type TCategory = {
   _id: string;
   name: string;
-  image: string;
+  image?: string;
   url: string;
 };
 
@@ -13,7 +13,7 @@ export type TProduct = {
   rating?: number;
   description?: string;
   features?: string[];
-  categoryId?: string;
+  categoryId?: string | TCategory,
   isFlashSale?: boolean;
-  isDeleted?: boolean
-}
+  isDeleted?: boolean;
+};
