@@ -72,7 +72,7 @@ const NavbarComponent = () => {
         <NavbarItem isActive={isActive("/categories")}>
           <Link
             color={isActive("/categories") ? "primary" : "foreground"}
-            href="/"
+            href="/categories"
           >
             Categories
           </Link>

@@ -7,8 +7,9 @@ import {
   Tooltip,
 } from "@nextui-org/react";
 import AddBtn from "../ui/AddBtn";
+import { TProduct } from "@/types";
 
-const ProductCard = () => {
+const ProductCard = ({product}: {product : TProduct}) => {
   return (
     <>
       <Card shadow="sm" className="">
@@ -21,11 +22,11 @@ const ProductCard = () => {
             alt="baby"
             className="w-full object-cover h-[360px]"
           />
-          <h3 className="my-3 px-3">tem.price</h3>
+          <h3 className="my-3 px-3">{product.name}</h3>
         </CardBody>
 
         <CardFooter className="text-small justify-between">
-          <b>tem.price</b>
+          <b>{product.price}TK</b>
           <Tooltip content="add to cart">
             <Button isIconOnly className="bg-transparent">
               <AddBtn />

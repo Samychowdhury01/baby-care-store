@@ -1,7 +1,8 @@
 import { Button } from "@nextui-org/button";
 import Link from "next/link";
 import RightArrow from "../ui/RightArrow";
-import ProductCard from "./ProductCard";
+import ProductCard from "../ui/ProductCard";
+
 
 const Popular = () => {
   return (
@@ -30,11 +31,11 @@ const Popular = () => {
         </Button>
       </div>
       <div className="grid grid-cols-4 gap-5">
+        {/* <ProductCard />
         <ProductCard />
         <ProductCard />
         <ProductCard />
-        <ProductCard />
-        <ProductCard />
+        <ProductCard /> */}
       </div>
     </div>
   );

@@ -6,134 +6,62 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
-import { Card, CardBody, CardFooter, Image } from "@nextui-org/react";
+import { Button, Card, CardBody, CardFooter, Image, Tooltip } from "@nextui-org/react";
 
 // import required modules
 import { Pagination, Navigation } from "swiper/modules";
+import { TProduct } from "@/types";
+import AddBtn from "../ui/AddBtn";
 
-const Swipper = () => {
+const Swipper = ({ products }: { products: TProduct[] }) => {
   return (
     <>
       <Swiper
-      slidesPerView={3}
-      spaceBetween={30}
+        slidesPerView={3}
+        spaceBetween={30}
         pagination={{
           type: "fraction",
-          clickable : true
+          clickable: true,
         }}
         navigation={true}
         modules={[Pagination, Navigation]}
         className="h-full w-full"
         breakpoints={{
-            640: {
-              slidesPerView: 2, // Two slides for tablets
-            },
-            1024: {
-              slidesPerView: 3, // Two slides for PCs
-            },
-          }}
+          640: {
+            slidesPerView: 2, // Two slides for tablets
+          },
+          1024: {
+            slidesPerView: 3, // Two slides for PCs
+          },
+        }}
       >
-        <SwiperSlide className="pb-10 w-[285px]">
-          <Card shadow="sm" className="">
-            <CardBody className="overflow-visible p-0">
-              <Image
-                shadow="sm"
-                radius="lg"
-                width="100%"
-                src="https://images.pexels.com/photos/459976/pexels-photo-459976.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-                alt="baby"
-                className="w-full object-cover h-[220px]"
-              />
-              <h3 className="my-3 px-3">product name</h3>
-            </CardBody>
+        {products.map((product) => (
+          <SwiperSlide key={product._id} className="pb-10 w-[285px]">
+            <Card shadow="sm" className="">
+              <CardBody className="overflow-visible p-0">
+                <Image
+                  shadow="sm"
+                  radius="lg"
+                  width="100%"
+                  src="https://images.pexels.com/photos/459976/pexels-photo-459976.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+                  alt="baby"
+                  className="w-full object-cover h-[220px]"
+                />
+                <h3 className="my-3 px-3">{product.name}</h3>
+              </CardBody>
 
-            <CardFooter className="text-small justify-between">
-              <b>title</b>
-              <p className="text-default-500">tem.price</p>
-            </CardFooter>
-          </Card>
-        </SwiperSlide>
-        <SwiperSlide className="pb-10 w-[285px]">
-          <Card shadow="sm" className="">
-            <CardBody className="overflow-visible p-0">
-              <Image
-                shadow="sm"
-                radius="lg"
-                width="100%"
-                src="https://images.pexels.com/photos/459976/pexels-photo-459976.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-                alt="baby"
-                className="w-full object-cover h-[220px]"
-              />
-              <h3 className="my-3 px-3">product name</h3>
-            </CardBody>
-
-            <CardFooter className="text-small justify-between">
-              <b>title</b>
-              <p className="text-default-500">tem.price</p>
-            </CardFooter>
-          </Card>
-        </SwiperSlide>
-        <SwiperSlide className="pb-10 w-[285px]">
-          <Card shadow="sm" className="">
-            <CardBody className="overflow-visible p-0">
-              <Image
-                shadow="sm"
-                radius="lg"
-                width="100%"
-                src="https://images.pexels.com/photos/459976/pexels-photo-459976.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-                alt="baby"
-                className="w-full object-cover h-[220px]"
-              />
-              <h3 className="my-3 px-3">product name</h3>
-            </CardBody>
-
-            <CardFooter className="text-small justify-between">
-              <b>title</b>
-              <p className="text-default-500">tem.price</p>
-            </CardFooter>
-          </Card>
-        </SwiperSlide>
-        <SwiperSlide className="pb-10 w-[285px]">
-          <Card shadow="sm" className="">
-            <CardBody className="overflow-visible p-0">
-              <Image
-                shadow="sm"
-                radius="lg"
-                width="100%"
-                src="https://images.pexels.com/photos/459976/pexels-photo-459976.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-                alt="baby"
-                className="w-full object-cover h-[220px]"
-              />
-              <h3 className="my-3 px-3">product name</h3>
-            </CardBody>
-
-            <CardFooter className="text-small justify-between">
-              <b>title</b>
-              <p className="text-default-500">tem.price</p>
-            </CardFooter>
-          </Card>
-        </SwiperSlide>
-        <SwiperSlide className="pb-10 w-[285px]">
-          <Card shadow="sm" className="">
-            <CardBody className="overflow-visible p-0">
-              <Image
-                shadow="sm"
-                radius="lg"
-                width="100%"
-                src="https://images.pexels.com/photos/459976/pexels-photo-459976.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-                alt="baby"
-                className="w-full object-cover h-[220px]"
-              />
-              <h3 className="my-3 px-3">product name</h3>
-            </CardBody>
-
-            <CardFooter className="text-small justify-between">
-              <b>title</b>
-              <p className="text-default-500">tem.price</p>
-            </CardFooter>
-          </Card>
-        </SwiperSlide>
-      
+              <CardFooter className="text-small justify-between">
+          <b>{product.price}TK</b>
+          <Tooltip content="add to cart">
+            <Button isIconOnly className="bg-transparent">
+              <AddBtn />
+            </Button>
+          </Tooltip>
+        </CardFooter>
+            </Card>
+          </SwiperSlide>
+        ))}
+       
       </Swiper>
     </>
   );

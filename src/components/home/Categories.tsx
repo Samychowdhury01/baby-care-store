@@ -1,34 +1,11 @@
 import { Button, Card, CardFooter, Image } from "@nextui-org/react";
 import Link from "next/link";
 import RightArrow from "../ui/RightArrow";
+import { TCategory } from "@/types";
 
-const Categories = () => {
-  const data = [
-    {
-      id: 1,
-      name: "Category 1",
-      image:
-        "https://images.pexels.com/photos/459976/pexels-photo-459976.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-    },
-    {
-      id: 2,
-      name: "Category 2",
-      image:
-        "https://images.pexels.com/photos/459976/pexels-photo-459976.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-    },
-    {
-      id: 3,
-      name: "Category 3",
-      image:
-        "https://images.pexels.com/photos/459976/pexels-photo-459976.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-    },
-    {
-      id: 4,
-      name: "Category 4",
-      image:
-        "https://images.pexels.com/photos/459976/pexels-photo-459976.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-    },
-  ];
+const Categories = async () => {
+  const res = await fetch(`${process.env.LOCAL_SERVER as string}/categories`);
+  const { data } = await res.json();
 
   return (
     <div className="mt-44 space-y-16">
@@ -42,29 +19,35 @@ const Categories = () => {
       </div>
       {/* cards */}
       <div className="grid grid-cols-3 gap-5">
-        {data.map((item, index) => (
+        {data?.slice(0, 4).map((category: TCategory, index: number) => (
           <div
             key={index}
             className={`${(index + 1) % 2 === 1 ? "row-span-2" : ""}`}
           >
-            <Card
+          <Link href={category.url}>
+          
+          <Card
               isPressable
               radius="lg"
               className={`${
                 (index + 1) % 2 === 1 ? "h-[515px]" : "h-[240px]"
-              } border-none hover:drop-shadow-2xl duration-500 transition-all`}
+              } border-none hover:drop-shadow-2xl duration-500 transition-all w-full`}
             >
               <div>
                 <Image
-                  alt={item.name}
-                  className="object-cover h-full w-full"
-                  src={item.image}
+                  alt="Woman listing to music"
+                  className={`object-cover w-full ${
+                (index + 1) % 2 === 1 ? "h-[515px]" : "h-[240px]"
+              } w-full`}
+                  src={category.image}
+                  width="100%"
                 />
                 <CardFooter className="bg-transparent overflow-hidden py-1 absolute bottom-1 ml-1 z-10">
-                  <p className="font-semibold">Available soon.</p>
+                  <p className="font-semibold">{category?.name}</p>
                 </CardFooter>
               </div>
             </Card>
+            </Link>
           </div>
         ))}
       </div>
@@ -72,7 +55,7 @@ const Categories = () => {
       <div className="flex items-center justify-center">
         <Button
           as={Link}
-          href="/products"
+          href="/categories"
           color="primary"
           variant="bordered"
           radius="lg"

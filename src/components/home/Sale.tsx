@@ -1,10 +1,14 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Button } from "@nextui-org/button";
 import React from "react";
 import Link from "next/link";
-import ProductCard from "./ProductCard";
 import RightArrow from "../ui/RightArrow";
+import ProductCard from "../ui/ProductCard";
+import { TProduct } from "@/types";
 
-const Sale = () => {
+const Sale = async() => {
+  const res = await fetch(`${process.env.LOCAL_SERVER as string}/products?limit=4&isFlashSale=false&fields=name,image,price,_id`);
+  const { data } = await res.json();
   return (
     <div className="my-44">
       <div className="flex items-center justify-between mb-9">
@@ -22,10 +26,14 @@ const Sale = () => {
         </Button>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-        <ProductCard />
-        <ProductCard />
-        <ProductCard />
-        <ProductCard />
+        {
+          data?.slice(0,4).map((product : TProduct) => (
+            <ProductCard
+            key={product._id}
+            product={product}
+            />
+            ))
+        }
       </div>
     </div>
   );
