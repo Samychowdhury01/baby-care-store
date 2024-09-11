@@ -9,7 +9,7 @@ const CategoriesPage = async() => {
   return (
     <div className="mt-8">
       {
-        categories.map((category : TCategory) => (
+        categories?.map((category : TCategory) => (
           <Categories key={category._id} category={category}/>
         ))
         

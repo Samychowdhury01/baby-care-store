@@ -1,7 +1,8 @@
+
 import React from 'react';
 
-const DynamicCategoriesPage = (props) => {
-    console.log(props);
+const DynamicCategoriesPage = async(props) => {
+    
     return (
         <div>
             

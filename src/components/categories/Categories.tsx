@@ -30,7 +30,7 @@ const Categories = async ({ category }: { category: TCategory }) => {
           </Button>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-          {products.map((product: TProduct) => (
+          {products?.map((product: TProduct) => (
             <ProductCard key={product._id} product={product} />
           ))}
         </div>
