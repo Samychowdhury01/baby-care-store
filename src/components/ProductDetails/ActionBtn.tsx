@@ -3,19 +3,19 @@
 import {
   addToCart,
   selectProductQuantityById,
-  updateQuantity,
 } from "@/redux/features/cartSlice";
 import { useAppDispatch, useAppSelector } from "@/redux/hook";
 import { TProduct } from "@/types";
 import { Button } from "@nextui-org/button";
 import { toast } from "sonner";
+import QuantityBtn from "../ui/QuantityBtn";
 
 const ActionBtn = ({ product }: { product: TProduct }) => {
   const quantity = useAppSelector((state) =>
     selectProductQuantityById(state, product._id)
   );
 
-  const { products } = useAppSelector((state) => state.cart);
+  
   const dispatch = useAppDispatch();
   // handle add to cart
   const handleAddToCart = () => {
@@ -25,41 +25,11 @@ const ActionBtn = ({ product }: { product: TProduct }) => {
     });
   };
 
-  // handle product update quantity
-  const handleUpdateQuantity = (type: string, productId: string) => {
-    const isProductExistInList = products.find(
-      (product: any) => product._id === productId
-    );
-    const payload = { type, productId };
-    if (isProductExistInList) {
-      dispatch(updateQuantity(payload));
-      toast.success(`quantity updated of your selected product`, {
-        className: "bg-green-500 text-white",
-      });
-    } else {
-      toast.error(`first add the product to your bucket!`, {
-        className: "bg-red-500 text-white",
-      });
-    }
-  };
+ 
 
   return (
     <div className="flex items-center gap-5">
-      <div className="flex items-center  p-1 border rounded-full">
-        <Button
-          onClick={() => handleUpdateQuantity("decrement", product._id)}
-          className="bg-transparent  text-xl"
-        >
-          -
-        </Button>
-        <p>{quantity}</p>
-        <Button
-          onClick={() => handleUpdateQuantity("increment", product._id)}
-          className="bg-transparent text-xl"
-        >
-          +
-        </Button>
-      </div>
+     <QuantityBtn productId={product._id}/>
       <Button
         isDisabled={quantity !== 0}
         onClick={handleAddToCart}

@@ -17,7 +17,6 @@ const cartSlice = createSlice({
         (product: any) => product._id === action.payload._id
       );
       if (!isProductExist) {
-
         state.products.push({ ...action.payload, quantity: 1 });
       }
       selectedItems(state);
@@ -29,17 +28,17 @@ const cartSlice = createSlice({
         (product: any) => product._id === action.payload.productId
       );
 
-      if (action.payload.type === "increment") {
+      if (product.quantity === 0) {
+        state.products = state.products.filter(
+          (product: any) => product._id !== action.payload.productId
+        );
+      } else if (action.payload.type === "increment") {
         product.quantity += 1;
       } else {
-        if (product.quantity) {
-          product.quantity -= 1;
-        } else {
-          state.products = state.products.filter(
-            (product: any) => product._id !== action.payload.productId
-          );
-        }
+        product.quantity -= 1;
       }
+      selectedItems(state);
+      countTotal(state);
     },
     // remove from cart
     clearCart: (state) => {

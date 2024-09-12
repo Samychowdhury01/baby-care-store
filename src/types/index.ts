@@ -18,3 +18,13 @@ export type TProduct = {
   isFlashSale?: boolean;
   isDeleted?: boolean;
 };
+
+export type TSignUpInfo = {
+  name: string;
+  email : string;
+  password : string;
+}
+export type TLoginInfo = {
+  email : string;
+  password : string;
+}

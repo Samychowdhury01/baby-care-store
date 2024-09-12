@@ -9,10 +9,14 @@ import {
   NavbarItem,
   Link,
   Button,
+  Badge,
 } from "@nextui-org/react";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
+import CartIcon from "./CartIcon";
+import { useAppSelector } from "@/redux/hook";
 const NavbarComponent = () => {
+  const { selectedItems } = useAppSelector((state) => state.cart);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const menuItems = ["Home", "Categories", "Dashboard"];
 
@@ -39,7 +43,9 @@ const NavbarComponent = () => {
           "data-[active=true]:after:bg-primary",
         ],
       }}
-      className={`bg-transparent  ${pathname === '/' ? "absolute top-0 left-0 right-0 z-10" : ""}`}
+      className={`bg-transparent  ${
+        pathname === "/" ? "absolute top-0 left-0 right-0 z-10" : ""
+      }`}
     >
       <NavbarContent className="sm:hidden" justify="start">
         <NavbarMenuToggle
@@ -89,10 +95,23 @@ const NavbarComponent = () => {
       </NavbarContent>
       <NavbarContent justify="end">
         <NavbarItem>
+          <Badge color="primary" content={selectedItems}>
+            <Button
+              as={Link}
+              href="/checkout"
+              variant="bordered"
+              className="text-foreground border-none"
+              isIconOnly
+            >
+              <CartIcon />
+            </Button>
+          </Badge>
+        </NavbarItem>
+        <NavbarItem>
           <Button
             as={Link}
             color="primary"
-            href="/auth"
+            href="/login"
             variant="shadow"
             className="text-black"
           >
