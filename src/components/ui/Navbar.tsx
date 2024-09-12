@@ -14,26 +14,17 @@ import {
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 import CartIcon from "./CartIcon";
-import { useAppDispatch, useAppSelector } from "@/redux/hook";
+import {  useAppSelector } from "@/redux/hook";
 import { useAuth } from "@/lib/AuthProviders";
-import { useRouter } from "next/navigation";
-import { logout } from "@/redux/features/authSlice";
 
 const NavbarComponent = () => {
-  const dispatch = useAppDispatch()
-  const router = useRouter()
   const { user, handleLogout } = useAuth();
   const { selectedItems } = useAppSelector((state) => state.cart);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const menuItems = ["Home", "Categories", "Dashboard"];
   const pathname = usePathname();
   const isActive = (href: string) => pathname === href;
-// handle logout
 
-const handleLogoutUsingRedux = () => {
-dispatch(logout())
-router.push('/login')
-}
   return (
     <Navbar
       isBordered
@@ -134,8 +125,7 @@ router.push('/login')
             </Button>
           ) : (
             <Button
-              onClick={handleLogoutUsingRedux}
-              // onClick={handleLogout}
+              onClick={handleLogout}
               color="primary"
               variant="shadow"
               className="text-black"

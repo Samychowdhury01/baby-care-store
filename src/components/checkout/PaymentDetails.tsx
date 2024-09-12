@@ -1,14 +1,52 @@
 "use client";
 import { useAuth } from "@/lib/AuthProviders";
-import { useAppSelector } from "@/redux/hook";
+import { clearCart } from "@/redux/features/cartSlice";
+import { useAppDispatch, useAppSelector } from "@/redux/hook";
 import { Button, Checkbox, Divider } from "@nextui-org/react";
+import { toast } from "sonner";
 
 const PaymentDetails = () => {
-  const {user} = useAuth()
-  console.log(user);
+  const dispatch = useAppDispatch();
+  const { user, token } = useAuth();
   const { deliveryCharge, selectedItems, total } = useAppSelector(
     (state) => state.cart
   );
+  const totalAmount = Number(total.toFixed(2));
+
+  const handleCheckout = async () => {
+    try {
+      console.log(token, "url line 14");
+      const order = {
+        userId: user?.userId,
+        username: user?.username,
+        totalAmount,
+        quantity: Number(selectedItems),
+      };
+      const res = await fetch(`${process.env.NEXT_PUBLIC_LOCAL_SERVER}/order`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`, // Add the token here
+        },
+        body: JSON.stringify(order),
+      });
+      const data = await res.json();
+      if (data?.success) {
+        toast.success("order  placed successfully", {
+          className: "bg-green-500 text-white",
+        });
+        dispatch(clearCart());
+      } else {
+        toast.error(data?.message, {
+          className: "bg-green-500 text-white",
+        });
+      }
+    } catch (err) {
+      toast.error("Something went wrong try Again!", {
+        className: "bg-green-500 text-white",
+      });
+    }
+  };
   return (
     <div className="space-y-5">
       <p className="text-foreground">
@@ -27,13 +65,25 @@ const PaymentDetails = () => {
       <Divider />
       <div className="grid grid-cols-2 justify-between text-xl">
         <h3>Order Total</h3>
-        <p>{total}TK</p>
+        <p>{totalAmount} TK</p>
       </div>
       <Checkbox isDisabled defaultSelected color="primary">
         Cash On Delivery
       </Checkbox>
-      <Button isDisabled={!user} color="primary" variant="shadow" className="w-full text-black">place an order</Button>
-      {!user && <p className="text-sm text-red-500">You need to Login to proceed the checkout process</p>}
+      <Button
+        onClick={handleCheckout}
+        isDisabled={!user}
+        color="primary"
+        variant="shadow"
+        className="w-full text-black"
+      >
+        place an order
+      </Button>
+      {!user && (
+        <p className="text-sm text-red-500">
+          You need to Login to proceed the checkout process
+        </p>
+      )}
     </div>
   );
 };
