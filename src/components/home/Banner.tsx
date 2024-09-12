@@ -4,6 +4,7 @@ import Swipper from "./Swipper";
 const Banner = async() => {
   const res = await fetch(`${process.env.LOCAL_SERVER as string}/products?limit=4&fields=name,image,price,_id`);
   const { data } = await res.json();
+  console.log(data, 'from line 7');
   return (
     <div className="relative h-[779px] flex items-center justify-center banner-bg">
       <div className="text-center space-y-5">

@@ -1,7 +1,7 @@
-import LottieAnimation from "@/components/ui/LottieAnimation";
 import notFoundAnimation from "@/assets/animation/404.json";
-import { Button } from "@nextui-org/button";
+import { Button } from "@nextui-org/react";
 import Link from "next/link";
+import LottieAnimation from "@/components/ui/LottieAnimation";
 
 const NotFoundPage = () => {
   return (

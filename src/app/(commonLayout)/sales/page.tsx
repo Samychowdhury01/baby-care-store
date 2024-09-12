@@ -14,7 +14,7 @@ const SalePage = async () => {
       {/* here will be a search bar */}
       {/* products */}
       <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-5">
-        {products.map((product: TProduct) => (
+        {products?.map((product: TProduct) => (
           <ProductCard key={product._id} product={product} />
         ))}
       </div>

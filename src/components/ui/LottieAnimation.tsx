@@ -9,6 +9,11 @@ const LottieAnimation = ({
   className: string;
   animationData: any;
 }) => {
+  if (typeof window === "undefined") {
+    // Return null if rendering on the server
+    return null;
+  }
+
   return <Lottie animationData={animationData} loop className={className} />;
 };
 

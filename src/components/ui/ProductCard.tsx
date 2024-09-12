@@ -1,15 +1,15 @@
+import AddBtn from "../ui/AddBtn";
+import { TProduct } from "@/types";
 import {
   Button,
+  Image,
+  Tooltip,
   Card,
   CardBody,
   CardFooter,
-  Image,
-  Tooltip,
 } from "@nextui-org/react";
-import AddBtn from "../ui/AddBtn";
-import { TProduct } from "@/types";
 
-const ProductCard = ({product}: {product : TProduct}) => {
+const ProductCard = ({ product }: { product: TProduct }) => {
   return (
     <>
       <Card shadow="sm" className="">

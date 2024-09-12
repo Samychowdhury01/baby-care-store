@@ -35,7 +35,7 @@ const Swipper = ({ products }: { products: TProduct[] }) => {
           },
         }}
       >
-        {products.map((product) => (
+        {products?.map((product) => (
           <SwiperSlide key={product._id} className="pb-10 w-[285px]">
             <Card shadow="sm" className="">
               <CardBody className="overflow-visible p-0">

@@ -1,6 +1,8 @@
 import ProductCard from "@/components/ui/ProductCard";
 import { TProduct } from "@/types";
-import React from "react";
+import { generateTitle } from "@/utils/generateTitle";
+import { notFound } from "next/navigation";
+
 
 const DynamicCategoriesPage = async ({
   params,
@@ -9,24 +11,27 @@ const DynamicCategoriesPage = async ({
     dynamicCategories: string;
   };
 }) => {
+
+  const { dynamicCategories } = params;
+  console.log(dynamicCategories);
   const res = await fetch(
-    `${process.env.LOCAL_SERVER as string}/products?categoryUrl=${
-      params.dynamicCategories
-    }`
+    `${
+      process.env.LOCAL_SERVER as string
+    }/products?categoryUrl=${dynamicCategories}`
   );
   const { data: products } = await res.json();
-
-  // Generate a dynamic title based on the category
-  const categoryTitle = params.dynamicCategories
-    .split("-")
-    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-    .join(" ");
-
+  console.log(products);
+  if (!products?.length) {
+    notFound()
+  }
   return (
     <div className="relative mt-8 space-y-8">
-      <h2 className="text-3xl gradient font-semibold">{categoryTitle}</h2>
+      <h2 className="text-3xl gradient font-semibold">
+        {generateTitle(dynamicCategories)}
+      </h2>
+
       <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-5">
-        {products.map((product: TProduct) => (
+        {products?.map((product: TProduct) => (
           <ProductCard key={product._id} product={product} />
         ))}
       </div>
