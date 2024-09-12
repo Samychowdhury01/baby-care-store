@@ -6,7 +6,7 @@ const Banner = async() => {
   const { data } = await res.json();
 
   return (
-    <div className="relative h-[779px] flex items-center justify-center banner-bg">
+    <div className="relative h-[900px] flex items-center justify-center banner-bg">
       <div className="text-center space-y-5">
         {/* heading */}
         <h1 className="text-4xl font-bold text-foreground tracking-wide">

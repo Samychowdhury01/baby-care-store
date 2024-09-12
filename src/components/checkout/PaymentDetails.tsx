@@ -1,8 +1,11 @@
 "use client";
+import { useAuth } from "@/lib/AuthProviders";
 import { useAppSelector } from "@/redux/hook";
 import { Button, Checkbox, Divider } from "@nextui-org/react";
 
 const PaymentDetails = () => {
+  const {user} = useAuth()
+  console.log(user);
   const { deliveryCharge, selectedItems, total } = useAppSelector(
     (state) => state.cart
   );
@@ -29,7 +32,8 @@ const PaymentDetails = () => {
       <Checkbox isDisabled defaultSelected color="primary">
         Cash On Delivery
       </Checkbox>
-      <Button color="primary" variant="shadow" className="w-full text-black">place an order</Button>
+      <Button isDisabled={!user} color="primary" variant="shadow" className="w-full text-black">place an order</Button>
+      {!user && <p className="text-sm text-red-500">You need to Login to proceed the checkout process</p>}
     </div>
   );
 };

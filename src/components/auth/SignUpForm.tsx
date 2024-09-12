@@ -10,46 +10,47 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 const SignUpForm = () => {
-  const router = useRouter()
+  const router = useRouter();
   const [loading, setLoading] = useState(false);
   const {
     register,
     handleSubmit,
     formState: { errors },
-    reset
+    reset,
   } = useForm();
 
   const onSubmit = async (data: any) => {
     try {
-      setLoading(true)
+      setLoading(true);
       const result = await singUp(data);
       if (result?.success) {
         toast.success(result?.message, {
           className: "bg-green-500 text-white",
         });
-        setLoading(false)
-        reset()
+        setLoading(false);
+        reset();
         router.push("/login");
       } else {
         toast.error(result?.message, {
           className: "bg-red-500 text-white",
         });
-        setLoading(false)
+        setLoading(false);
       }
     } catch (err) {
-      console.log({err}, 'from catch');
+      console.log({ err }, "from catch");
       toast.error("Something went wrong!", {
         className: "bg-red-500 text-white",
       });
-      setLoading(false)
-      reset()
+      setLoading(false);
+      reset();
     }
   };
 
   console.log(errors);
 
   return (
-    <>
+    <div className="border p-5 rounded-lg">
+      <h3 className="text-center text-foreground text-2xl mb-5">Sign Up</h3>
       <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">
         <Input
           label="Name"
@@ -100,7 +101,7 @@ const SignUpForm = () => {
           </Button>
         </div>
       </form>
-    </>
+    </div>
   );
 };
 

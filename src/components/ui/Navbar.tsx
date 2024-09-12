@@ -14,18 +14,26 @@ import {
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 import CartIcon from "./CartIcon";
-import { useAppSelector } from "@/redux/hook";
+import { useAppDispatch, useAppSelector } from "@/redux/hook";
 import { useAuth } from "@/lib/AuthProviders";
+import { useRouter } from "next/navigation";
+import { logout } from "@/redux/features/authSlice";
 
 const NavbarComponent = () => {
-  const { user } = useAuth();
-  console.log(user);
+  const dispatch = useAppDispatch()
+  const router = useRouter()
+  const { user, handleLogout } = useAuth();
   const { selectedItems } = useAppSelector((state) => state.cart);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const menuItems = ["Home", "Categories", "Dashboard"];
-
   const pathname = usePathname();
   const isActive = (href: string) => pathname === href;
+// handle logout
+
+const handleLogoutUsingRedux = () => {
+dispatch(logout())
+router.push('/login')
+}
   return (
     <Navbar
       isBordered
@@ -88,14 +96,16 @@ const NavbarComponent = () => {
           </Link>
         </NavbarItem>
 
-        <NavbarItem isActive={isActive("/dashboard")}>
-          <Link
-            color={isActive("/dashboard") ? "primary" : "foreground"}
-            href="/dashboard"
-          >
-            Dashboard
-          </Link>
-        </NavbarItem>
+        {user && (
+          <NavbarItem isActive={isActive("/dashboard")}>
+            <Link
+              color={isActive("/dashboard") ? "primary" : "foreground"}
+              href="/dashboard"
+            >
+              Dashboard
+            </Link>
+          </NavbarItem>
+        )}
       </NavbarContent>
       <NavbarContent justify="end">
         <NavbarItem>
@@ -112,15 +122,27 @@ const NavbarComponent = () => {
           </Badge>
         </NavbarItem>
         <NavbarItem>
-          <Button
-            as={Link}
-            color="primary"
-            href="/login"
-            variant="shadow"
-            className="text-black"
-          >
-            Login
-          </Button>
+          {!user ? (
+            <Button
+              as={Link}
+              color="primary"
+              href="/login"
+              variant="shadow"
+              className="text-black"
+            >
+              Login
+            </Button>
+          ) : (
+            <Button
+              onClick={handleLogoutUsingRedux}
+              // onClick={handleLogout}
+              color="primary"
+              variant="shadow"
+              className="text-black"
+            >
+              Logout
+            </Button>
+          )}
         </NavbarItem>
       </NavbarContent>
 

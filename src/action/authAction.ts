@@ -44,3 +44,7 @@ export const getUserInfo = async () => {
     return null;
   }
 };
+
+export const removeUserInfo = async () => {
+  cookies().delete("token");
+};
