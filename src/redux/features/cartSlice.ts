@@ -17,7 +17,7 @@ const cartSlice = createSlice({
         (product: any) => product._id === action.payload._id
       );
       if (!isProductExist) {
-        console.log("from if");
+
         state.products.push({ ...action.payload, quantity: 1 });
       }
       selectedItems(state);

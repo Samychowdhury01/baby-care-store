@@ -6,12 +6,20 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
-import { Button, Card, CardBody, CardFooter, Image, Tooltip } from "@nextui-org/react";
+import {
+  Button,
+  Card,
+  CardBody,
+  CardFooter,
+  Image,
+  Tooltip,
+} from "@nextui-org/react";
 
 // import required modules
 import { Pagination, Navigation } from "swiper/modules";
 import { TProduct } from "@/types";
 import AddBtn from "../ui/AddBtn";
+import Link from "next/link";
 
 const Swipper = ({ products }: { products: TProduct[] }) => {
   return (
@@ -51,17 +59,25 @@ const Swipper = ({ products }: { products: TProduct[] }) => {
               </CardBody>
 
               <CardFooter className="text-small justify-between">
-          <b>{product.price}TK</b>
-          <Tooltip content="add to cart">
-            <Button isIconOnly className="bg-transparent">
-              <AddBtn />
-            </Button>
-          </Tooltip>
-        </CardFooter>
+                <b>{product.price}TK</b>
+                <Tooltip content="add to cart">
+                  <Button isIconOnly className="bg-transparent">
+                    <AddBtn />
+                  </Button>
+                </Tooltip>
+              </CardFooter>
+              <Button
+                as={Link}
+                href={`${product?.categoryId?.url}/${product._id}`}
+                color="secondary"
+                radius="none"
+                className="text-black"
+              >
+                View Details
+              </Button>
             </Card>
           </SwiperSlide>
         ))}
-       
       </Swiper>
     </>
   );

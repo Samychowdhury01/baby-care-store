@@ -13,14 +13,13 @@ const DynamicCategoriesPage = async ({
 }) => {
 
   const { dynamicCategories } = params;
-  console.log(dynamicCategories);
   const res = await fetch(
     `${
       process.env.LOCAL_SERVER as string
     }/products?categoryUrl=${dynamicCategories}`
   );
   const { data: products } = await res.json();
-  console.log(products);
+
   if (!products?.length) {
     notFound()
   }

@@ -36,8 +36,7 @@ const ActionBtn = ({ product }: { product: TProduct }) => {
       toast.success(`quantity updated of your selected product`, {
         className: "bg-green-500 text-white",
       });
-    }
-    else{
+    } else {
       toast.error(`first add the product to your bucket!`, {
         className: "bg-red-500 text-white",
       });
@@ -62,6 +61,7 @@ const ActionBtn = ({ product }: { product: TProduct }) => {
         </Button>
       </div>
       <Button
+        isDisabled={quantity !== 0}
         onClick={handleAddToCart}
         variant="shadow"
         color="primary"

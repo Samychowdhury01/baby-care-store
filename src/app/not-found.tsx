@@ -3,9 +3,10 @@ import { Button } from "@nextui-org/react";
 import Link from "next/link";
 import LottieAnimation from "@/components/ui/LottieAnimation";
 
+
 const NotFoundPage = () => {
   return (
-    <div>
+    <div className="h-[70vh]">
       <LottieAnimation animationData={notFoundAnimation} className="h-[70vh]" />
 
       <div className="flex items-center justify-center">

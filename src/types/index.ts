@@ -13,7 +13,8 @@ export type TProduct = {
   rating?: number;
   description?: string;
   features?: string[];
-  categoryId?: string | TCategory,
+  categoryId?: TCategory;
+  // categoryId?: string | TCategory,
   isFlashSale?: boolean;
   isDeleted?: boolean;
 };

@@ -8,6 +8,8 @@ import {
   CardBody,
   CardFooter,
 } from "@nextui-org/react";
+import Link from "next/link";
+import RightArrow from "./RightArrow";
 
 const ProductCard = ({ product }: { product: TProduct }) => {
   return (
@@ -33,6 +35,16 @@ const ProductCard = ({ product }: { product: TProduct }) => {
             </Button>
           </Tooltip>
         </CardFooter>
+        <Button
+          as={Link}
+          radius="none"
+          href={`${product?.categoryId?.url}/${product._id}`}
+          color="secondary"
+          className="text-black"
+          endContent={<RightArrow />}
+        >
+          View Details
+        </Button>
       </Card>
     </>
   );
