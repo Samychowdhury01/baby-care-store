@@ -2,38 +2,47 @@
 "use client";
 import { singUp } from "@/action/authAction";
 import { Button } from "@nextui-org/button";
-import { Input } from "@nextui-org/react";
+import { Input, Spinner } from "@nextui-org/react";
 import Link from "next/link";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
-import {redirect} from 'next/navigation' 
+import { useRouter } from "next/navigation";
+import { useState } from "react";
 
 const SignUpForm = () => {
+  const router = useRouter()
+  const [loading, setLoading] = useState(false);
   const {
     register,
     handleSubmit,
     formState: { errors },
+    reset
   } = useForm();
 
   const onSubmit = async (data: any) => {
     try {
+      setLoading(true)
       const result = await singUp(data);
-
       if (result?.success) {
         toast.success(result?.message, {
           className: "bg-green-500 text-white",
         });
-        redirect('/login')
+        setLoading(false)
+        reset()
+        router.push("/login");
       } else {
         toast.error(result?.message, {
           className: "bg-red-500 text-white",
         });
-
+        setLoading(false)
       }
     } catch (err) {
+      console.log({err}, 'from catch');
       toast.error("Something went wrong!", {
         className: "bg-red-500 text-white",
       });
+      setLoading(false)
+      reset()
     }
   };
 
@@ -48,7 +57,9 @@ const SignUpForm = () => {
           type="text"
           {...register("name", { required: "Name is required" })}
         />
-        {errors.name && <p className="text-red-500">Name is required</p>}
+        {errors.name && (
+          <p className="text-red-500 text-sm">Name is required</p>
+        )}
 
         <Input
           label="Email"
@@ -56,7 +67,9 @@ const SignUpForm = () => {
           type="email"
           {...register("email", { required: "Email is required" })}
         />
-        {errors.email && <p className="text-red-500">Email is required</p>}
+        {errors.email && (
+          <p className="text-red-500 text-sm">Email is required</p>
+        )}
 
         <Input
           label="Password"
@@ -71,7 +84,7 @@ const SignUpForm = () => {
           })}
         />
         {errors.password && (
-          <p className="text-red-500">Password is required</p>
+          <p className="text-red-500 text-sm">Password is required</p>
         )}
 
         <p className="text-center text-small">
@@ -83,7 +96,7 @@ const SignUpForm = () => {
 
         <div className="flex gap-2 justify-end">
           <Button type="submit" fullWidth color="primary">
-            Sign up
+            {loading ? <Spinner color="default" /> : "Sign up"}
           </Button>
         </div>
       </form>

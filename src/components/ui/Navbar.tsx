@@ -15,7 +15,11 @@ import { usePathname } from "next/navigation";
 import { useState } from "react";
 import CartIcon from "./CartIcon";
 import { useAppSelector } from "@/redux/hook";
+import { useAuth } from "@/lib/AuthProviders";
+
 const NavbarComponent = () => {
+  const { user } = useAuth();
+  console.log(user);
   const { selectedItems } = useAppSelector((state) => state.cart);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const menuItems = ["Home", "Categories", "Dashboard"];
