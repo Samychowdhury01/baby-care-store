@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 import { Button, Card, CardFooter, Image } from "@nextui-org/react";
 import Link from "next/link";
 import RightArrow from "../ui/RightArrow";

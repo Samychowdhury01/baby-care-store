@@ -7,7 +7,7 @@ const Banner = async() => {
 
   return (
     <div className="md:relative h-[900px] flex items-center justify-center banner-bg w-full">
-      <div className="md:text-center space-y-5">
+      <div className="md:text-center space-y-5  pl-5 md:pl-0">
         {/* heading */}
         <h1 className="text-2xl md:text-4xl font-bold text-foreground md:tracking-wide">
         Nurturing Moments, Creating Smiles. <span className="gradient font-extrabold block mt-2">Your Baby, Your Tender Touch!</span>

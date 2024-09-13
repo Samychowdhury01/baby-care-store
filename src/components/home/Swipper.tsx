@@ -11,8 +11,7 @@ import {
   Card,
   CardBody,
   CardFooter,
-  Image,
-  Tooltip,
+  Image
 } from "@nextui-org/react";
 
 // import required modules
@@ -25,7 +24,7 @@ const Swipper = ({ products }: { products: TProduct[] }) => {
   return (
     <>
       <Swiper
-        slidesPerView={3}
+        
         spaceBetween={30}
         pagination={{
           type: "fraction",
