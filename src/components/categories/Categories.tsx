@@ -16,7 +16,7 @@ const Categories = async ({ category }: { category: TCategory }) => {
     <>
       <div className="mb-8">
         <div className="flex items-center justify-between mb-9">
-          <h2 className="text-3xl gradient font-semibold">{category.name}</h2>
+          <h2 className="text-xl md:text-3xl gradient font-semibold">{category.name}</h2>
           <Button
             as={Link}
             href={category.url as string}

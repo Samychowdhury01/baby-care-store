@@ -1,15 +1,8 @@
-import AddBtn from "../ui/AddBtn";
 import { TProduct } from "@/types";
-import {
-  Button,
-  Image,
-  Tooltip,
-  Card,
-  CardBody,
-  CardFooter,
-} from "@nextui-org/react";
+import { Button, Image, Card, CardBody, CardFooter } from "@nextui-org/react";
 import Link from "next/link";
 import RightArrow from "./RightArrow";
+import AddToCart from "./AddToCart";
 
 const ProductCard = ({ product }: { product: TProduct }) => {
   return (
@@ -29,11 +22,7 @@ const ProductCard = ({ product }: { product: TProduct }) => {
 
         <CardFooter className="text-small justify-between">
           <b>{product.price}TK</b>
-          <Tooltip content="add to cart">
-            <Button isIconOnly className="bg-transparent">
-              <AddBtn />
-            </Button>
-          </Tooltip>
+          <AddToCart product={product} />
         </CardFooter>
         <Button
           as={Link}

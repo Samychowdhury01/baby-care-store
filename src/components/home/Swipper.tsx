@@ -18,8 +18,8 @@ import {
 // import required modules
 import { Pagination, Navigation } from "swiper/modules";
 import { TProduct } from "@/types";
-import AddBtn from "../ui/AddBtn";
 import Link from "next/link";
+import AddToCart from "../ui/AddToCart";
 
 const Swipper = ({ products }: { products: TProduct[] }) => {
   return (
@@ -60,11 +60,7 @@ const Swipper = ({ products }: { products: TProduct[] }) => {
 
               <CardFooter className="text-small justify-between">
                 <b>{product.price}TK</b>
-                <Tooltip content="add to cart">
-                  <Button isIconOnly className="bg-transparent">
-                    <AddBtn />
-                  </Button>
-                </Tooltip>
+                <AddToCart product={product} />
               </CardFooter>
               <Button
                 as={Link}

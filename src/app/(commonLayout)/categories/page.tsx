@@ -7,7 +7,7 @@ const CategoriesPage = async() => {
   const { data : categories } = await res.json();
 
   return (
-    <div className="mt-8">
+    <div className="mt-8 p-5 md:p-0">
       {
         categories?.map((category : TCategory) => (
           <Categories key={category._id} category={category}/>

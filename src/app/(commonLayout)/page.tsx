@@ -7,9 +7,11 @@ const HomePage = () => {
   return (
     <>
       <Banner />
-      <Sale />
-      <Categories />
-      <Popular />
+      <div className="p-5 md:p-0">
+        <Sale />
+        <Categories />
+        <Popular />
+      </div>
     </>
   );
 };

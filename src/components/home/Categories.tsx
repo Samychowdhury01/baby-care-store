@@ -10,43 +10,44 @@ const Categories = async () => {
   return (
     <div className="mt-44 space-y-16">
       <div className="space-y-3 text-center">
-        <h2 className="text-3xl font-semibold gradient">Top Categories</h2>
-        <p className="text-foreground w-1/2 mx-auto">
+        <h2 className="text-xl md:text-3xl font-semibold gradient">
+          Top Categories
+        </h2>
+        <p className="text-foreground md:w-1/2 mx-auto">
           Discover our top categories, featuring everything from cozy clothing
           to essential baby gear. We've curated the best products to keep your
           little one happy and healthy.
         </p>
       </div>
       {/* cards */}
-      <div className="grid grid-cols-3 gap-5">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
         {data?.slice(0, 4).map((category: TCategory, index: number) => (
           <div
             key={index}
             className={`${(index + 1) % 2 === 1 ? "row-span-2" : ""}`}
           >
-          <Link href={category.url}>
-          
-          <Card
-              isPressable
-              radius="lg"
-              className={`${
-                (index + 1) % 2 === 1 ? "h-[515px]" : "h-[240px]"
-              } border-none hover:drop-shadow-2xl duration-500 transition-all w-full`}
-            >
-              <div>
-                <Image
-                  alt="Woman listing to music"
-                  className={`object-cover w-full ${
-                (index + 1) % 2 === 1 ? "h-[515px]" : "h-[240px]"
-              } w-full`}
-                  src={category.image}
-                  width="100%"
-                />
-                <CardFooter className="bg-transparent overflow-hidden py-1 absolute bottom-1 ml-1 z-10">
-                  <p className="font-semibold">{category?.name}</p>
-                </CardFooter>
-              </div>
-            </Card>
+            <Link href={category.url}>
+              <Card
+                isPressable
+                radius="lg"
+                className={`${
+                  (index + 1) % 2 === 1 ? "h-[515px]" : "h-[240px]"
+                } border-none hover:drop-shadow-2xl duration-500 transition-all w-full`}
+              >
+                <div>
+                  <Image
+                    alt="Woman listing to music"
+                    className={`object-cover w-full ${
+                      (index + 1) % 2 === 1 ? "h-[515px]" : "h-[240px]"
+                    } w-full`}
+                    src={category.image}
+                    width="100%"
+                  />
+                  <CardFooter className="bg-transparent overflow-hidden py-1 absolute bottom-1 ml-1 z-10">
+                    <p className="font-semibold">{category?.name}</p>
+                  </CardFooter>
+                </div>
+              </Card>
             </Link>
           </div>
         ))}

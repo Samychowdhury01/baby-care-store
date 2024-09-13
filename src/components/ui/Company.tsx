@@ -9,7 +9,7 @@ import Image from "next/image";
 const Company = () => {
   return (
     <div className="mt-44">
-      <div className="bg-[#fef8eb] flex items-center justify-around py-10">
+      <div className="bg-[#fef8eb] flex flex-col md:flex-row items-center justify-around gap-5 py-10">
         <Image src={logo} alt="Logo" width={100} />
         <Image src={logo2} alt="Logo" width={100} />
         <Image src={logo3} alt="Logo" width={100} />

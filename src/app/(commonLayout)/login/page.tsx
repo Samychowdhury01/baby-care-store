@@ -1,15 +1,14 @@
-
 import AuthImage from "@/components/auth/AuthImage";
 import LoginForm from "@/components/auth/LoginForm";
 
-const LoginPage =  () => {
+const LoginPage = () => {
   return (
     <>
-      <div className="flex items-center justify-around gap-5 mt-8">
-      <AuthImage />
-    <div className="w-1/3">
-    <LoginForm />
-    </div>
+      <div className="flex flex-col md:flex-row items-center justify-around gap-5 mt-8 p-5 md:p-0">
+        <AuthImage />
+        <div className="w-full md:w-1/3">
+          <LoginForm />
+        </div>
       </div>
     </>
   );

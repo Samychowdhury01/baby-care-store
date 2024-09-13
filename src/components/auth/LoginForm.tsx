@@ -42,7 +42,7 @@ const [loading, setLoading] = useState(false);
     }
   };
   return (
-    <div className="border p-5 rounded-lg">
+    <div className="border p-5 rounded-lg w-full">
     <h3 className="text-center text-foreground text-2xl mb-5">Login</h3>
       <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">
         <Input
