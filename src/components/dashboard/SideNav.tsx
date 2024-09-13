@@ -34,7 +34,7 @@ const SideNav = () => {
   const isActive = (href: string) => pathname === href;
 
   return (
-    <ul className="bg-background py-2 px-5 space-y-5">
+    <ul className="bg-background py-2 px-5 space-y-5 h-[500px]">
       {user &&
         navItems
           .filter((item) => item.role === user.role)

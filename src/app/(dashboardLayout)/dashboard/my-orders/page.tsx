@@ -1,11 +1,14 @@
-import React from 'react';
+
+import UserOrdersTable from "@/components/dashboard/UserOrdersTable";
+import React from "react";
 
 const MyOrderPage = () => {
-    return (
-        <div>
-            
-        </div>
-    );
+
+  return (
+    <>
+      <UserOrdersTable />
+    </>
+  );
 };
 
 export default MyOrderPage;

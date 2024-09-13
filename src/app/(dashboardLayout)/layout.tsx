@@ -7,7 +7,7 @@ const DashboardLayout = ({children}: {children : ReactNode}) => {
         <>
            <TopNav/>
             <div className='grid grid-cols-5 gap-5'>
-                <div className='h-[200px]'>
+                <div>
                    <SideNav/>
                 </div>
                 <div className='col-span-4'>

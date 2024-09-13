@@ -91,7 +91,11 @@ const NavbarComponent = () => {
           <NavbarItem isActive={isActive("/dashboard")}>
             <Link
               color={isActive("/dashboard") ? "primary" : "foreground"}
-              href="/dashboard"
+              href={
+                user.role === "admin"
+                  ? "/dashboard/products"
+                  : "/dashboard/my-orders"
+              }
             >
               Dashboard
             </Link>

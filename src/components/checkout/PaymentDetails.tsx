@@ -2,17 +2,19 @@
 import { useAuth } from "@/lib/AuthProviders";
 import { clearCart } from "@/redux/features/cartSlice";
 import { useAppDispatch, useAppSelector } from "@/redux/hook";
+import { TProduct } from "@/types";
 import { Button, Checkbox, Divider } from "@nextui-org/react";
 import { toast } from "sonner";
 
 const PaymentDetails = () => {
   const dispatch = useAppDispatch();
   const { user, token } = useAuth();
-  const { deliveryCharge, selectedItems, total } = useAppSelector(
+  const { deliveryCharge, products, selectedItems, total } = useAppSelector(
     (state) => state.cart
   );
   const totalAmount = Number(total.toFixed(2));
-
+  const productsId = products.map((product: TProduct) => product._id);
+  console.log(productsId);
   const handleCheckout = async () => {
     try {
       console.log(token, "url line 14");
@@ -20,9 +22,10 @@ const PaymentDetails = () => {
         userId: user?.userId,
         username: user?.username,
         totalAmount,
+        products: productsId,
         quantity: Number(selectedItems),
       };
-      const res = await fetch(`${process.env.NEXT_PUBLIC_LOCAL_SERVER}/order`, {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_LOCAL_SERVER}/orders`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -72,7 +75,7 @@ const PaymentDetails = () => {
       </Checkbox>
       <Button
         onClick={handleCheckout}
-        isDisabled={!user}
+        isDisabled={!user || !selectedItems}
         color="primary"
         variant="shadow"
         className="w-full text-black"
@@ -82,6 +85,11 @@ const PaymentDetails = () => {
       {!user && (
         <p className="text-sm text-red-500">
           You need to Login to proceed the checkout process
+        </p>
+      )}
+      {!selectedItems && (
+        <p className="text-sm text-red-500">
+          No products in your cart!!
         </p>
       )}
     </div>
