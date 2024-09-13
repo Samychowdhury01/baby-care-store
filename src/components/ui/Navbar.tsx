@@ -7,15 +7,15 @@ import {
   NavbarMenu,
   NavbarContent,
   NavbarItem,
-  Link,
   Button,
   Badge,
 } from "@nextui-org/react";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 import CartIcon from "./CartIcon";
-import {  useAppSelector } from "@/redux/hook";
+import { useAppSelector } from "@/redux/hook";
 import { useAuth } from "@/lib/AuthProviders";
+import Link from "next/link";
 
 const NavbarComponent = () => {
   const { user, handleLogout } = useAuth();
@@ -146,7 +146,6 @@ const NavbarComponent = () => {
                   : "text-foreground"
               }`}
               href={item === "Home" ? "/" : `/${item.toLowerCase()}`}
-              size="lg"
             >
               {item}
             </Link>

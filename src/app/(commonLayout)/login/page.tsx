@@ -1,14 +1,8 @@
-import { getUserInfo } from "@/action/authAction";
+
 import AuthImage from "@/components/auth/AuthImage";
 import LoginForm from "@/components/auth/LoginForm";
-import { redirect } from "next/navigation";
 
-const LoginPage = async () => {
-  const  user  = await getUserInfo();
-  
-  if (user) {
-    redirect("/");
-  }
+const LoginPage =  () => {
   return (
     <>
       <div className="flex items-center justify-around gap-5 mt-8">
