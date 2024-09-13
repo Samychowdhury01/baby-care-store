@@ -63,7 +63,9 @@ const UserOrdersTable = () => {
   ];
 
   return (
-    <Table>
+   <div  className="mt-10">
+     <h1 className="text-3xl font-semibold text-center mb-5 pb-2 border-b-2 bor">My Orders List</h1>
+    <Table> 
       <TableHeader>
         {columns.map((column) => (
           <TableColumn key={column.key}>{column.label}</TableColumn>
@@ -91,6 +93,7 @@ const UserOrdersTable = () => {
         ))}
       </TableBody>
     </Table>
+   </div>
   );
 };
 
