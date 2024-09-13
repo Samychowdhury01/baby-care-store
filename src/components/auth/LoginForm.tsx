@@ -26,7 +26,7 @@ const [loading, setLoading] = useState(false);
           className: "bg-green-500 text-white",
         });
         setLoading(false)
-        router.push('/checkout')
+        router.push('/')
       } else {
         toast.error(result?.message, {
           className: "bg-red-500 text-white",

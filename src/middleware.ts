@@ -13,10 +13,10 @@ export function middleware(req: NextRequest) {
 
   // If the user is already logged in, prevent them from accessing the login page
   if (token && pathname === "/login") {
-    return NextResponse.redirect(new URL("/dashboard", req.url));
+    return NextResponse.redirect(new URL("/", req.url));
   }
   if (token && pathname === "/register") {
-    return NextResponse.redirect(new URL("/dashboard", req.url));
+    return NextResponse.redirect(new URL("/", req.url));
   }
 
   return NextResponse.next(); // Proceed with the request
