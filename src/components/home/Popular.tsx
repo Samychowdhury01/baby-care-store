@@ -7,11 +7,14 @@ import ProductCard from "../ui/ProductCard";
 
 const Popular = async () => {
   const res = await fetch(
-    `${
-      process.env.LOCAL_SERVER as string
-    }/products?limit=8&fields=name,image,price,_id`
+    "https://baby-care-store-backend-two.vercel.app/api/products"
   );
   const { data } = await res.json();
+
+  // const res = await fetch(
+  //   `${process.env.PRODUCTION_SERVER}/products?limit=8&fields=name,image,price,_id`
+  // );
+  console.log(data);
   return (
     <div className="my-44">
       <div className="flex flex-col md:flex-row gap-5 items-center justify-center mb-10">
@@ -38,14 +41,9 @@ const Popular = async () => {
         </Button>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-4 gap-5">
-        {data.map((product: TProduct) => (
+        {data?.slice(0, 8).map((product: TProduct) => (
           <ProductCard key={product._id} product={product} />
         ))}
-        {/* <ProductCard />
-        <ProductCard />
-        <ProductCard />
-        <ProductCard />
-        <ProductCard /> */}
       </div>
     </div>
   );

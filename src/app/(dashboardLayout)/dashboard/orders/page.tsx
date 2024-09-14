@@ -43,16 +43,15 @@ const OrdersPage = () => {
   useEffect(() => {
     const fetchOrders = async () => {
       try {
-        const res = await fetch(
-          `${process.env.NEXT_PUBLIC_LOCAL_SERVER}/orders`,
-          {
-            method: "GET",
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: `Bearer ${token}`,
-            },
-          }
-        );
+        const api = `${process.env.NEXT_PUBLIC_PRODUCTION_SERVER}/orders`
+        console.log(api, token);
+        const res = await fetch(`${process.env.NEXT_PUBLIC_PRODUCTION_SERVER}/orders`, {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        });
         const { data } = await res.json();
         setOrders(data);
         setLoading(false);
@@ -69,16 +68,13 @@ const OrdersPage = () => {
 
   const handleDeliveredProduct = async (id: string) => {
     try {
-      const res = await fetch(
-        `${process.env.NEXT_PUBLIC_LOCAL_SERVER}/orders/${id}`,
-        {
-          method: "PUT",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
+      const res = await fetch(`${process.env.PRODUCTION_SERVER}/orders/${id}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      });
       const data = await res.json();
       console.log(data);
       if (data.success) {
@@ -105,6 +101,7 @@ const OrdersPage = () => {
       });
     }
   };
+
   return (
     <>
       <div className="mt-10">

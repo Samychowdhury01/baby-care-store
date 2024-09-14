@@ -7,7 +7,7 @@ import { TProduct } from "@/types";
 import { Button } from "@nextui-org/react";
 
 const Sale = async() => {
-  const res = await fetch(`${process.env.LOCAL_SERVER as string}/products?limit=4&isFlashSale=false&fields=name,image,price,_id`);
+  const res = await fetch(`${process.env.PRODUCTION_SERVER as string}/products?limit=4&isFlashSale=false&fields=name,image,price,_id`);
   const { data } = await res.json();
   return (
     <div className="my-44">

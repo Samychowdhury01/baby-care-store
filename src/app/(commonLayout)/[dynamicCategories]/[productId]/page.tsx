@@ -15,9 +15,10 @@ type TParam = {
 const ProductDetailsPage = async ({ params }: { params: TParam }) => {
   const { productId, dynamicCategories } = params;
 
-  const res = await fetch(`${process.env.LOCAL_SERVER}/products/${productId}`);
+  const res = await fetch(`${process.env.PRODUCTION_SERVER}/products/${productId}`);
 
   const { data: productDetails }: { data: TProduct } = await res.json();
+  
   // for error
   if (!Object.keys(productId).length) {
     return (

@@ -25,7 +25,7 @@ const PaymentDetails = () => {
         products: productsId,
         quantity: Number(selectedItems),
       };
-      const res = await fetch(`${process.env.NEXT_PUBLIC_LOCAL_SERVER}/orders`, {
+      const res = await fetch(`${process.env.PRODUCTION_SERVER}/orders`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -88,9 +88,7 @@ const PaymentDetails = () => {
         </p>
       )}
       {!selectedItems && (
-        <p className="text-sm text-red-500">
-          No products in your cart!!
-        </p>
+        <p className="text-sm text-red-500">No products in your cart!!</p>
       )}
     </div>
   );

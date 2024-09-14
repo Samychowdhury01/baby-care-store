@@ -7,11 +7,9 @@ type TReview = {
 };
 const ProductDetails = async ({ productId }: { productId: string }) => {
   const response = await fetch(
-    `${process.env.LOCAL_SERVER}/reviews/${productId}`,
+    `${process.env.PRODUCTION_SERVER}/reviews/${productId}`,
     {
-      next: {
-        revalidate: 60,
-      },
+      cache: "no-store",
     }
   );
   const { data: reviews } = await response.json();

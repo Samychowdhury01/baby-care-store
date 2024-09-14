@@ -6,7 +6,7 @@ import { cookies } from "next/headers";
 
 export const login = async (loginInfo: TLoginInfo) => {
   // login logic here
-  const res = await fetch(`${process.env.LOCAL_SERVER}/auth/login`, {
+  const res = await fetch(`${process.env.PRODUCTION_SERVER}/auth/login`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -22,7 +22,7 @@ export const login = async (loginInfo: TLoginInfo) => {
 
 export const singUp = async (singUpInfo: TSignUpInfo) => {
   // sign-up logic here
-  const res = await fetch(`${process.env.LOCAL_SERVER}/auth/signup`, {
+  const res = await fetch(`${process.env.PRODUCTION_SERVER}/auth/signup`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

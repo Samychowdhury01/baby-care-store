@@ -13,8 +13,8 @@ const ProductCard = ({ product }: { product: TProduct }) => {
             shadow="sm"
             radius="lg"
             width="100%"
-            src="https://images.pexels.com/photos/459976/pexels-photo-459976.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-            alt="baby"
+            src={product?.image}
+            alt="product_image"
             className="w-full object-cover h-[360px]"
           />
           <h3 className="my-3 px-3">{product.name}</h3>

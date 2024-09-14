@@ -8,7 +8,7 @@ export const postReview = async (reviewData: {
 }) => {
   try {
     const token = await getToken();
-    const res = await fetch(`${process.env.LOCAL_SERVER}/reviews`, {
+    const res = await fetch(`${process.env.PRODUCTION_SERVER}/reviews`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

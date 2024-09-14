@@ -2,7 +2,7 @@
 import Swipper from "./Swipper";
 
 const Banner = async() => {
-  const res = await fetch(`${process.env.LOCAL_SERVER as string}/products?limit=4&fields=name,image,price,_id`);
+  const res = await fetch(`${process.env.PRODUCTION_SERVER as string}/products?limit=4&fields=name,image,price,_id`);
   const { data } = await res.json();
 
   return (

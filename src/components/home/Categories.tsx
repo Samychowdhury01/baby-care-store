@@ -5,7 +5,7 @@ import RightArrow from "../ui/RightArrow";
 import { TCategory } from "@/types";
 
 const Categories = async () => {
-  const res = await fetch(`${process.env.LOCAL_SERVER as string}/categories`);
+  const res = await fetch(`${process.env.PRODUCTION_SERVER as string}/categories`);
   const { data } = await res.json();
 
   return (

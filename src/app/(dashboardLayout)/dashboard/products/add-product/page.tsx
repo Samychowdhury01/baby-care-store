@@ -16,10 +16,10 @@ const AddProductPage = () => {
     register,
     handleSubmit,
     formState: { errors },
-    reset
+    reset,
   } = useForm();
   useEffect(() => {
-    fetch(`${process.env.NEXT_PUBLIC_LOCAL_SERVER}/categories`)
+    fetch(`${process.env.PRODUCTION_SERVER}/categories`)
       .then((response) => response.json())
       .then((data) => {
         if (data.success) {
@@ -74,7 +74,7 @@ const AddProductPage = () => {
         rating,
       };
       const response = await fetch(
-        `${process.env.NEXT_PUBLIC_LOCAL_SERVER}/products`,
+        `${process.env.PRODUCTION_SERVER}/products`,
         {
           method: "POST",
           headers: {
@@ -89,7 +89,7 @@ const AddProductPage = () => {
         toast.success("Product created successfully", {
           className: "bg-green-500 text-white",
         });
-        reset()
+        reset();
         console.log(result);
       } else {
         toast.error("Failed to create product", {

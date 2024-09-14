@@ -6,13 +6,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
-import {
-  Button,
-  Card,
-  CardBody,
-  CardFooter,
-  Image
-} from "@nextui-org/react";
+import { Button, Card, CardBody, CardFooter, Image } from "@nextui-org/react";
 
 // import required modules
 import { Pagination, Navigation } from "swiper/modules";
@@ -24,7 +18,6 @@ const Swipper = ({ products }: { products: TProduct[] }) => {
   return (
     <>
       <Swiper
-        
         spaceBetween={30}
         pagination={{
           type: "fraction",
@@ -50,7 +43,7 @@ const Swipper = ({ products }: { products: TProduct[] }) => {
                   shadow="sm"
                   radius="lg"
                   width="100%"
-                  src="https://images.pexels.com/photos/459976/pexels-photo-459976.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+                  src={product?.image}
                   alt="baby"
                   className="w-full object-cover h-[220px]"
                 />

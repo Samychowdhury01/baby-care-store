@@ -15,7 +15,7 @@ const DynamicCategoriesPage = async ({
   const { dynamicCategories } = params;
   const res = await fetch(
     `${
-      process.env.LOCAL_SERVER as string
+      process.env.PRODUCTION_SERVER as string
     }/products?categoryUrl=${dynamicCategories}`
   );
   const { data: products } = await res.json();

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 import { useAuth } from "@/lib/AuthProviders";
@@ -58,7 +59,7 @@ const UpdateProduct = ({
       rating: Number(rating),
     };
     const res = await fetch(
-      `${process.env.NEXT_PUBLIC_LOCAL_SERVER}/products/${product._id}`,
+      `${process.env.PRODUCTION_SERVER}/products/${product._id}`,
       {
         method: "PUT",
         headers: {

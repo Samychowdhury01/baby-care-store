@@ -48,16 +48,13 @@ const ProductsPage = () => {
   useEffect(() => {
     const fetchOrders = async () => {
       try {
-        const res = await fetch(
-          `${process.env.NEXT_PUBLIC_LOCAL_SERVER}/products`,
-          {
-            method: "GET",
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: `Bearer ${token}`,
-            },
-          }
-        );
+        const res = await fetch(`${process.env.NEXT_PUBLIC_PRODUCTION_SERVER}/products`, {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        });
         const { data } = await res.json();
 
         setProducts(data);
@@ -74,10 +71,9 @@ const ProductsPage = () => {
   }, [user, token]);
 
   const handleDeleteProduct = async (id: string) => {
-    console.log(id);
     try {
       const res = await fetch(
-        `${process.env.NEXT_PUBLIC_LOCAL_SERVER}/products/${id}`,
+        `${process.env.PRODUCTION_SERVER}/products/${id}`,
         {
           method: "DELETE",
           headers: {

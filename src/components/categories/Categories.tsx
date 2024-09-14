@@ -8,7 +8,7 @@ import ProductCard from "../ui/ProductCard";
 const Categories = async ({ category }: { category: TCategory }) => {
   const response = await fetch(
     `${
-      process.env.LOCAL_SERVER as string
+      process.env.PRODUCTION_SERVER as string
     }/products?limit=4&fields=name,image,price,_id&categoryId=${category._id}`
   );
   const { data: products } = await response.json();

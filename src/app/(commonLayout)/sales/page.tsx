@@ -3,9 +3,7 @@ import { TProduct } from "@/types";
 
 const SalePage = async () => {
   const res = await fetch(
-    `${
-      process.env.LOCAL_SERVER as string
-    }/products?isFlashSale=false&fields=name,image,price,_id`
+    `${process.env.PRODUCTION_SERVER as string}/products?isFlashSale=true`
   );
   const { data: products } = await res.json();
   return (
