@@ -5,11 +5,13 @@ import RightArrow from "../ui/RightArrow";
 import { TCategory } from "@/types";
 
 const Categories = async () => {
-  const res = await fetch(`${process.env.PRODUCTION_SERVER as string}/categories`);
+  const res = await fetch(
+    `${process.env.PRODUCTION_SERVER as string}/categories`
+  );
   const { data } = await res.json();
 
   return (
-    <div className="mt-44 space-y-16">
+    <div className="mt-16 space-y-16">
       <div className="space-y-3 text-center">
         <h2 className="text-xl md:text-3xl font-semibold gradient">
           Top Categories
@@ -39,8 +41,8 @@ const Categories = async () => {
                   <Image
                     alt="Woman listing to music"
                     className={`object-cover w-full ${
-                      (index + 1) % 2 === 1 ? "h-[515px]" : "h-[240px]"
-                    } w-full`}
+                      (index + 1) % 2 === 1 ? "h-[515px]" : "h-full"
+                    }`}
                     src={category.image}
                     width="100%"
                   />

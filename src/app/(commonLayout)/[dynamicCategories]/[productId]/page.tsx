@@ -11,6 +11,7 @@ type TParam = {
   dynamicCategories: string;
   productId: string;
 };
+import '@smastrom/react-rating/style.css'
 
 const ProductDetailsPage = async ({ params }: { params: TParam }) => {
   const { productId, dynamicCategories } = params;
@@ -50,7 +51,7 @@ const ProductDetailsPage = async ({ params }: { params: TParam }) => {
           {/* image */}
           <div className="h-[500px] w-[500px]">
             <Image
-              src={productDetails.image}
+              src={productDetails?.image}
               alt="product_image"
               width={300}
               height={500}

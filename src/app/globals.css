@@ -55,7 +55,21 @@
   border-radius: 20px !important;
 }
 
-.swiper-button-prev:after,
+/* .swiper-button-prev:after,
 .swiper-button-next:after {
   font-size: 24px !important;
+  height: 20px !important;
+} */
+.swiper-button-prev,
+.swiper-button-next{
+  display: none !important;
+}
+
+.swiper-pagination-fraction{
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  width: 50% !important;
+  max-width: 80% !important;
+  margin: 0 auto !important;
 }

@@ -19,7 +19,7 @@ const ProductDetails = async ({ productId }: { productId: string }) => {
         Reviews
       </h2>
       <div className="w-full md:w-2/3">
-        {reviews.length
+        {reviews?.length
           ? reviews?.map((review: TReview) => (
               <div key={review._id} className="border-b-1 pb-1 mb-3">
                 <h3 className="font-semibold">{review.userName}</h3>

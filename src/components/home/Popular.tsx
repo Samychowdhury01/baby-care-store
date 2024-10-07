@@ -16,7 +16,7 @@ const Popular = async () => {
   // );
   console.log(data);
   return (
-    <div className="my-44">
+    <div className="mt-16">
       <div className="flex flex-col md:flex-row gap-5 items-center justify-center mb-10">
         <div className="space-y-3">
           <h2 className="text-xl md:text-3xl font-semibold gradient">

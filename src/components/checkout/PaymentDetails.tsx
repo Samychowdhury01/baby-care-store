@@ -17,7 +17,7 @@ const PaymentDetails = () => {
   console.log(productsId);
   const handleCheckout = async () => {
     try {
-      console.log(token, "url line 14");
+      console.log('clicked');
       const order = {
         userId: user?.userId,
         username: user?.username,
@@ -25,7 +25,7 @@ const PaymentDetails = () => {
         products: productsId,
         quantity: Number(selectedItems),
       };
-      const res = await fetch(`${process.env.PRODUCTION_SERVER}/orders`, {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_PRODUCTION_SERVER}/orders`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -34,14 +34,17 @@ const PaymentDetails = () => {
         body: JSON.stringify(order),
       });
       const data = await res.json();
+      console.log(data);
       if (data?.success) {
+        
         toast.success("order  placed successfully", {
           className: "bg-green-500 text-white",
         });
         dispatch(clearCart());
       } else {
+        console.log(data);
         toast.error(data?.message, {
-          className: "bg-green-500 text-white",
+          className: "bg-red-500 text-white",
         });
       }
     } catch (err) {

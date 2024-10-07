@@ -1,5 +1,5 @@
 "use client";
-import Container from "@/components/ui/Container";
+
 import { persistor, store } from "@/redux/store";
 import { NextUIProvider } from "@nextui-org/react";
 import { ReactNode } from "react";
@@ -14,7 +14,7 @@ const Provider = ({ children }: { children: ReactNode }) => {
       <ReduxProvider store={store}>
         <PersistGate loading={null} persistor={persistor}>
           <AuthProviders>
-            <Container>{children}</Container>
+           {children}
           </AuthProviders>
         </PersistGate>
       </ReduxProvider>

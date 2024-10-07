@@ -1,4 +1,5 @@
 import Company from "@/components/ui/Company";
+import Container from "@/components/ui/Container";
 import Footer from "@/components/ui/Footer";
 import NavbarComponent from "@/components/ui/Navbar";
 import React from "react";
@@ -13,7 +14,7 @@ const CommonLayout = ({
       <div className="relative">
         <NavbarComponent />
       </div>
-      <div>{children}</div>
+      <Container>{children}</Container>
       <Company />
       <Footer />
     </>

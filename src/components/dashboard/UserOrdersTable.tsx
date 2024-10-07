@@ -11,7 +11,6 @@ import {
 } from "@nextui-org/react";
 import Image from "next/image";
 import { useAuth } from "@/lib/AuthProviders";
-import { toast } from "sonner";
 
 const UserOrdersTable = () => {
   const [orders, setOrders] = useState([]);
@@ -23,7 +22,7 @@ const UserOrdersTable = () => {
       if (user?.userId && token) {
         try {
           const res = await fetch(
-            `${process.env.PRODUCTION_SERVER}/orders/${user.userId}`,
+            `${process.env.NEXT_PUBLIC_PRODUCTION_SERVER}/orders/${user.userId}`,
             {
               method: "GET",
               headers: {
@@ -32,14 +31,12 @@ const UserOrdersTable = () => {
               },
             }
           );
-          const { data } = await res.json();
+          const  data  = await res.json();
           console.log(data);
-          setOrders(data);
+          setOrders(data.data);
         } catch (error) {
           console.log(error);
-          toast.error("Something went wrong. try Again!", {
-            className: "bg-red-500 text-white",
-          });
+         
         }
       }
     };
@@ -67,34 +64,40 @@ const UserOrdersTable = () => {
       <h1 className="text-3xl font-semibold text-center mb-5 pb-2 border-b-2 bor">
         My Orders List
       </h1>
-      <Table>
-        <TableHeader>
-          {columns.map((column) => (
-            <TableColumn key={column.key}>{column.label}</TableColumn>
-          ))}
-        </TableHeader>
-        <TableBody>
-          {orders?.map((order: any) => (
-            <TableRow key={order._id}>
-              <TableCell>
-                {order?.products?.map((product: any) => (
-                  <div key={product._id} className="flex items-center gap-5">
-                    <Image
-                      src={product.image}
-                      alt="product_image"
-                      width={50}
-                      height={50}
-                    />
-                    <p>{product.name}</p>
-                  </div>
-                ))}
-              </TableCell>
-              <TableCell className="w-16">{order?.totalAmount}</TableCell>
-              <TableCell>{order?.status}</TableCell>
-            </TableRow>
-          ))}
-        </TableBody>
-      </Table>
+      {orders.length > 0 ? (
+        <Table>
+          <TableHeader>
+            {columns.map((column) => (
+              <TableColumn key={column.key}>{column.label}</TableColumn>
+            ))}
+          </TableHeader>
+          <TableBody>
+            {orders?.map((order: any) => (
+              <TableRow key={order._id}>
+                <TableCell>
+                  {order?.products?.map((product: any) => (
+                    <div key={product._id} className="flex items-center gap-5">
+                      <Image
+                        src={product.image}
+                        alt="product_image"
+                        width={50}
+                        height={50}
+                      />
+                      <p>{product.name}</p>
+                    </div>
+                  ))}
+                </TableCell>
+                <TableCell className="w-16">{order?.totalAmount}</TableCell>
+                <TableCell>{order?.status}</TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      ) : (
+        <div className="text-center text-lg font-bold pt-10">
+          <p>No orders found</p>
+        </div>
+      )}
     </div>
   );
 };
