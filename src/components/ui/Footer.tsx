@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 const Footer = () => {
   return (
     <>
@@ -14,9 +16,15 @@ const Footer = () => {
           <div>
             <h4 className="text-lg font-semibold">Explore</h4>
             <ul>
-              <li>Privacy Policy</li>
-              <li>Terms of Service</li>
-              <li>Contact Us</li>
+              <li>
+                <Link href="/policy">Privacy Policy</Link>
+              </li>
+              <li>
+                <Link href="/terms">Terms of Service</Link>
+              </li>
+              <li>
+                <Link href="/contact-us">Contact Us</Link>
+              </li>
             </ul>
           </div>
           {/* social icons */}

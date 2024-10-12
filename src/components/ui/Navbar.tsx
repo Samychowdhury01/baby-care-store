@@ -77,7 +77,14 @@ const NavbarComponent = () => {
             Home
           </Link>
         </NavbarItem>
-
+        <NavbarItem isActive={isActive("/sales")}>
+          <Link
+            color={isActive("/sales") ? "primary" : "foreground"}
+            href="/sales"
+          >
+            Flash Sales
+          </Link>
+        </NavbarItem>
         <NavbarItem isActive={isActive("/categories")}>
           <Link
             color={isActive("/categories") ? "primary" : "foreground"}
@@ -91,11 +98,7 @@ const NavbarComponent = () => {
           <NavbarItem isActive={isActive("/dashboard")}>
             <Link
               color={isActive("/dashboard") ? "primary" : "foreground"}
-              href={
-                user.role === "admin"
-                  ? "/dashboard/products"
-                  : "/dashboard/my-orders"
-              }
+              href='/dashboard'
             >
               Dashboard
             </Link>

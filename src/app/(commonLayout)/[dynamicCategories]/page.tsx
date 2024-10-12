@@ -24,8 +24,8 @@ const DynamicCategoriesPage = async ({
     notFound()
   }
   return (
-    <div className="relative mt-8 space-y-8">
-      <h2 className="text-3xl gradient font-semibold">
+    <div className="relative mt-8 space-y-8 p-5 md:p-0">
+      <h2 className="text-xl md:text-3xl gradient font-semibold">
         {generateTitle(dynamicCategories)}
       </h2>
 

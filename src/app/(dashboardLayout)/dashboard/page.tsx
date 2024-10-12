@@ -5,7 +5,7 @@ import Container from "@/components/ui/Container";
 import { useAuth } from "@/lib/AuthProviders";
 import { useEffect, useState } from "react";
 
-const OverviewPage = () => {
+const DashboardPage = () => {
   const [dashboardData, setDashboardData] = useState({});
   const { token, user } = useAuth();
 
@@ -46,4 +46,4 @@ const OverviewPage = () => {
   );
 };
 
-export default OverviewPage;
+export default DashboardPage;

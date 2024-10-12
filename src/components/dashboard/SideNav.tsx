@@ -16,7 +16,7 @@ const SideNav = () => {
     },
     {
       title: "Overview",
-      url: "/dashboard/overview",
+      url: "/dashboard",
       role: "user",
     },
     {
