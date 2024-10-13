@@ -19,7 +19,7 @@ const AddProductPage = () => {
     reset,
   } = useForm();
   useEffect(() => {
-    fetch(`${process.env.PRODUCTION_SERVER}/categories`)
+    fetch(`${process.env.NEXT_PUBLIC_PRODUCTION_SERVER}/categories`)
       .then((response) => response.json())
       .then((data) => {
         if (data.success) {
@@ -27,7 +27,7 @@ const AddProductPage = () => {
         }
       });
   }, []);
-
+console.log(categories);
   //   handle
   const onSubmit = async (data: any) => {
     try {
@@ -105,7 +105,7 @@ const AddProductPage = () => {
   };
   console.log(errors);
   return (
-    <div className="mt-10">
+    <div className="mt-10 p-5 lg:p-0">
       <h1 className="text-3xl font-semibold text-center mb-5 pb-2 border-b-2 bor">
         Add Product
       </h1>
@@ -138,7 +138,7 @@ const AddProductPage = () => {
           </label>
         </div>
         {/* rest inputs */}
-        <div className="grid grid-cols-2 gap-3">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
           {/* product name */}
           <div>
             <Input

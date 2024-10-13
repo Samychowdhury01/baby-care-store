@@ -11,7 +11,7 @@ const SideNav = () => {
   const navItems = [
     {
       title: "Overview",
-      url: "/dashboard/overview",
+      url: "/dashboard",
       role: "admin",
     },
     {
@@ -44,7 +44,7 @@ const SideNav = () => {
   const isActive = (href: string) => pathname === href;
 
   return (
-    <ul className="bg-background py-2 px-5 space-y-5 h-screen">
+    <ul className="bg-background py-2 px-5 space-y-5 lg:h-screen">
       {user &&
         navItems
           .filter((item) => item.role === user.role)

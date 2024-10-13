@@ -104,7 +104,7 @@ const ProductsPage = () => {
   return (
     <>
       <div className="mt-10">
-        <h1 className="text-3xl font-semibold text-center mb-5 pb-2 border-b-2 bor">
+      <h1 className="text-xl md:text-2xl lg:text-3xl font-semibold text-center mb-5 pb-2 border-b-2">
           Order Management
         </h1>
         {loading ? (

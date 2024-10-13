@@ -13,6 +13,7 @@ import {
 } from "@nextui-org/react";
 import { useAuth } from "@/lib/AuthProviders";
 import { toast } from "sonner";
+
 const OrdersPage = () => {
   const [orders, setOrders] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -40,24 +41,28 @@ const OrdersPage = () => {
       label: "Action",
     },
   ];
+
   useEffect(() => {
     const fetchOrders = async () => {
       try {
-        const api = `${process.env.NEXT_PUBLIC_PRODUCTION_SERVER}/orders`
+        const api = `${process.env.NEXT_PUBLIC_PRODUCTION_SERVER}/orders`;
         console.log(api, token);
-        const res = await fetch(`${process.env.NEXT_PUBLIC_PRODUCTION_SERVER}/orders`, {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
-        });
+        const res = await fetch(
+          `${process.env.NEXT_PUBLIC_PRODUCTION_SERVER}/orders`,
+          {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
         const { data } = await res.json();
         setOrders(data);
         setLoading(false);
       } catch (error) {
         setLoading(false);
-        toast.error("Something went wrong. try Again!", {
+        toast.error("Something went wrong. Try again!", {
           className: "bg-red-500 text-white",
         });
       }
@@ -96,7 +101,7 @@ const OrdersPage = () => {
       }
     } catch (error) {
       console.log(error);
-      toast.error("Something went wrong. try Again!", {
+      toast.error("Something went wrong. Try again!", {
         className: "bg-red-500 text-white",
       });
     }
@@ -105,7 +110,7 @@ const OrdersPage = () => {
   return (
     <>
       <div className="mt-10">
-        <h1 className="text-3xl font-semibold text-center mb-5 pb-2 border-b-2 bor">
+        <h1 className="text-xl md:text-2xl lg:text-3xl font-semibold text-center mb-5 pb-2 border-b-2">
           Order Management
         </h1>
         {loading ? (
@@ -113,34 +118,37 @@ const OrdersPage = () => {
             <Spinner />
           </div>
         ) : (
-          <Table>
-            <TableHeader>
-              {columns.map((column) => (
-                <TableColumn key={column.key}>{column.label}</TableColumn>
-              ))}
-            </TableHeader>
-            <TableBody>
-              {orders?.map((order: any) => (
-                <TableRow key={order._id}>
-                  <TableCell>{order?.username}</TableCell>
-                  <TableCell>{order?.totalAmount}</TableCell>
-                  <TableCell>{order?.quantity}</TableCell>
-                  <TableCell>{order?.status}</TableCell>
-                  <TableCell>
-                    <Button
-                      onClick={() => handleDeliveredProduct(order._id)}
-                      isDisabled={order?.status === "delivered"}
-                      color="primary"
-                      variant="shadow"
-                      size="sm"
-                    >
-                      Delivered
-                    </Button>
-                  </TableCell>
-                </TableRow>
-              ))}
-            </TableBody>
-          </Table>
+          // Add a div wrapper with overflow-x-auto for horizontal scrolling
+          <div className="overflow-x-auto">
+            <Table>
+              <TableHeader>
+                {columns.map((column) => (
+                  <TableColumn key={column.key}>{column.label}</TableColumn>
+                ))}
+              </TableHeader>
+              <TableBody>
+                {orders?.map((order: any) => (
+                  <TableRow key={order._id}>
+                    <TableCell>{order?.username}</TableCell>
+                    <TableCell>{order?.totalAmount}</TableCell>
+                    <TableCell>{order?.quantity}</TableCell>
+                    <TableCell>{order?.status}</TableCell>
+                    <TableCell>
+                      <Button
+                        onClick={() => handleDeliveredProduct(order._id)}
+                        isDisabled={order?.status === "delivered"}
+                        color="primary"
+                        variant="shadow"
+                        size="sm"
+                      >
+                        Delivered
+                      </Button>
+                    </TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </div>
         )}
       </div>
     </>

@@ -16,6 +16,7 @@ import CartIcon from "./CartIcon";
 import { useAppSelector } from "@/redux/hook";
 import { useAuth } from "@/lib/AuthProviders";
 import Link from "next/link";
+import LogOut from "./LogOut";
 
 const NavbarComponent = () => {
   const { user, handleLogout } = useAuth();
@@ -98,7 +99,7 @@ const NavbarComponent = () => {
           <NavbarItem isActive={isActive("/dashboard")}>
             <Link
               color={isActive("/dashboard") ? "primary" : "foreground"}
-              href='/dashboard'
+              href="/dashboard"
             >
               Dashboard
             </Link>
@@ -131,14 +132,7 @@ const NavbarComponent = () => {
               Login
             </Button>
           ) : (
-            <Button
-              onClick={handleLogout}
-              color="primary"
-              variant="shadow"
-              className="text-black"
-            >
-              Logout
-            </Button>
+            <LogOut />
           )}
         </NavbarItem>
       </NavbarContent>
